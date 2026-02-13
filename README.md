@@ -1,7 +1,7 @@
 # RogueliteCoopPrototype
 
 A multiplayer roguelite prototype built in Unity 6 (URP) using Photon Fusion 2.0.  
-This project is part of a portfolio piece focused on modular architecture, scalable systems, and clean multiplayer implementation.
+I am creating this project as part of a portfolio piece with my focus on modular architecture, scalable systems, and clean multiplayer implementation.
 
 ---
 
