@@ -8,5 +8,6 @@ Each entry documents progress, decisions, challenges, and lessons learned throug
 ## 2026
 
 ### February
-- **2026-02-13 — Milestone 1 Complete**  
+- [2026-02-13 — Milestone 1 Complete](2026-02-13-Milestone1-Complete.md)  
   Networking foundation finished: scene flow, player spawning, input handling, and networked movement.
+
