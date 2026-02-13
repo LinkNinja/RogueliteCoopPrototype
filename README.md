@@ -56,7 +56,7 @@ This milestone introduces the first real gameplay loop and gives the player a fu
 ---
 
 ## 📓 Devlogs
-Devlogs documenting progress, decisions, and technical challenges can be found in the `/Devlogs` folder (or DEVLOG.md if you prefer a single file).
+Devlogs documenting progress, decisions, and technical challenges can be found in the `/Devlogs` folder.
 
 ---
 
