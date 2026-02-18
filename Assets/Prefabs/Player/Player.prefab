@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 6344195377394875798}
   - component: {fileID: 4466232142965841654}
   - component: {fileID: 5556655179238288618}
+  - component: {fileID: 4373821966344476219}
+  - component: {fileID: 1162905801170526577}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -217,6 +219,8 @@ MonoBehaviour:
   NetworkedBehaviours:
   - {fileID: 4466232142965841654}
   - {fileID: 5556655179238288618}
+  - {fileID: 4373821966344476219}
+  - {fileID: 1162905801170526577}
   ForceRemoteRenderTimeframe: 0
 --- !u!114 &4466232142965841654
 MonoBehaviour:
@@ -247,4 +251,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1281870b4d86d48bda0ff7bc5ce44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  moveSpeed: 6
+  moveSpeed: 1
+--- !u!114 &4373821966344476219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703317159140392852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5b10962dbb1f434193c0115e580f21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  baseStats: {fileID: 11400000, guid: a736c13a7695e4d4c8eb77c579066470, type: 2}
+  _CurrentHP: 0
+--- !u!114 &1162905801170526577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703317159140392852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54cb4b927ff4e846b35f4fe0fb6dc40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  baseDamage: 10
+  attackRange: 4
+  attackCooldown: 0.4

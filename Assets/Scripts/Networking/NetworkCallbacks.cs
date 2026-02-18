@@ -3,33 +3,53 @@ using Fusion.Sockets;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NetworkCallbacks : MonoBehaviour, INetworkRunnerCallbacks
 {
     [SerializeField] private NetworkObject playerPrefab;
+    private Dictionary<PlayerRef, NetworkObject> _spawnedCharacters = new Dictionary<PlayerRef, NetworkObject>();
+    private NetworkRunner _runner;
+
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+        Debug.Log("OnPlayerJoined fired...");
+
         if (runner.IsServer)
-        {
-            runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
-            Debug.Log($"Player joined: {player}");
-        }
+            StartCoroutine(SpawnNextFrame(runner, player));
     }
+
+    private System.Collections.IEnumerator SpawnNextFrame(NetworkRunner runner, PlayerRef player)
+    {
+        // Wait one frame so the simulation is fully initialized
+        yield return null;
+        Debug.Log("Spawning for PlayerRef: " + player + " | LocalPlayer: " + runner.LocalPlayer);
+        Debug.Log("Server is spawning player...");
+        runner.Spawn(playerPrefab, Vector3.zero, Quaternion.identity, player);
+    }
+
 
     public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
 
     public void OnInput(NetworkRunner runner, NetworkInput input)
     {
+        // Only collect input for the local player
+        if (runner.LocalPlayer == null)
+            return;
+
         Vector2 move = PlayerInputActionsSingleton.Instance.Player.Move.ReadValue<Vector2>();
+        bool attackPressed = PlayerInputActionsSingleton.Instance.Player.Attack.WasPressedThisFrame();
 
         PlayerInputData data = new PlayerInputData
         {
-            move = move
+            move = move,
+            attackPressed = attackPressed
         };
 
         input.Set(data);
     }
+
 
     public void OnInputMissing(NetworkRunner runner, PlayerRef player, NetworkInput input) { }
     public void OnConnectedToServer(NetworkRunner runner) { }
@@ -59,4 +79,7 @@ public class NetworkCallbacks : MonoBehaviour, INetworkRunnerCallbacks
     public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
     public void OnHostMigration(NetworkRunner runner, HostMigrationToken hostMigrationToken) { }
+
+
+
 }
